@@ -121,7 +121,7 @@ build_treble() {
         SIGNED=true
         echo ""
     fi
-    mv $OUT/system.img build-output/lineage-21.0-$BUILD_DATE-UNOFFICIAL-${TARGET}$(${PERSONAL} && echo "-personal" || echo "")$(${SIGNED} && echo "-signed" || echo "").img
+#    mv $OUT/system.img build-output/lineage-21.0-$BUILD_DATE-UNOFFICIAL-${TARGET}$(${PERSONAL} && echo "-personal" || echo "")$(${SIGNED} && echo "-signed" || echo "").img
 }
 
 if ${NOSYNC}
