@@ -67,7 +67,7 @@ prep_build() {
     echo "Setting up build environment"
     source build/envsetup.sh &> /dev/null
     source vendor/lineage/vars/aosp_target_release
-    mkdir -p ~/build-output
+    mkdir -p build-output
     echo ""
 
     repopick 321337 -r -f # Deprioritize important developer notifications
@@ -99,7 +99,7 @@ finalize_treble() {
 
 build_device() {
     brunch ${1}
-    mv $OUT/lineage-*.zip ~/build-output/lineage-21.0-$BUILD_DATE-UNOFFICIAL-${1}$($PERSONAL && echo "-personal" || echo "").zip
+    mv $OUT/lineage-*.zip build-output/lineage-21.0-$BUILD_DATE-UNOFFICIAL-${1}$($PERSONAL && echo "-personal" || echo "").zip
 }
 
 build_treble() {
@@ -121,7 +121,7 @@ build_treble() {
         SIGNED=true
         echo ""
     fi
-    mv $OUT/system.img ~/build-output/lineage-21.0-$BUILD_DATE-UNOFFICIAL-${TARGET}$(${PERSONAL} && echo "-personal" || echo "")$(${SIGNED} && echo "-signed" || echo "").img
+    mv $OUT/system.img build-output/lineage-21.0-$BUILD_DATE-UNOFFICIAL-${TARGET}$(${PERSONAL} && echo "-personal" || echo "")$(${SIGNED} && echo "-signed" || echo "").img
 }
 
 if ${NOSYNC}
@@ -157,7 +157,7 @@ do
     echo "Starting $(${PERSONAL} && echo "personal " || echo "")build for ${MODE} ${var}"
     build_${MODE} ${var}
 done
-ls ~/build-output | grep 'lineage' || true
+ls build-output | grep 'lineage' || true
 
 END=`date +%s`
 ELAPSEDM=$(($(($END-$START))/60))
