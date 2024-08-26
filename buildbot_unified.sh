@@ -2,8 +2,7 @@
 echo ""
 echo "LineageOS 21 Unified Buildbot"
 echo "Executing in 5 seconds - CTRL-C to exit"
-echo ""
-sleep 5
+
 
 if [ $# -lt 2 ]
 then
@@ -38,14 +37,7 @@ done
 
 
 # Abort early on error
-set -eE
-trap '(\
-echo;\
-echo \!\!\! An error happened during script execution;\
-echo \!\!\! Please check console output for bad sync,;\
-echo \!\!\! failed patch application, etc.;\
-echo\
-)' ERR
+
 
 START=`date +%s`
 BUILD_DATE="$(date -u +%Y%m%d)"
@@ -57,7 +49,7 @@ prep_build() {
     echo ""
 
     echo "Syncing repos"
-    repo sync -c --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
+    /opt/crave/resync.sh
     echo ""
 
     echo "Setting up build environment"
@@ -66,10 +58,10 @@ prep_build() {
     mkdir -p ~/build-output
     echo ""
 
-    repopick 321337 -r -f # Deprioritize important developer notifications
-    repopick 321338 -r -f # Allow disabling important developer notifications
-    repopick 321339 -r -f # Allow disabling USB notifications
-    repopick 368923 -r -f # Launcher3: Show clear all button in recents overview
+    # repopick 321337 -r -f # Deprioritize important developer notifications
+    # repopick 321338 -r -f # Allow disabling important developer notifications
+    # repopick 321339 -r -f # Allow disabling USB notifications
+    # repopick 368923 -r -f # Launcher3: Show clear all button in recents overview
 }
 
 apply_patches() {
