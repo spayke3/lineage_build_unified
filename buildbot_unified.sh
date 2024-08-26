@@ -70,10 +70,10 @@ prep_build() {
     mkdir -p build-output
     echo ""
 
-    repopick 321337 -r -f # Deprioritize important developer notifications
-    repopick 321338 -r -f # Allow disabling important developer notifications
-    repopick 321339 -r -f # Allow disabling USB notifications
-    repopick 368923 -r -f # Launcher3: Show clear all button in recents overview
+    # repopick 321337 -r -f # Deprioritize important developer notifications
+    # repopick 321338 -r -f # Allow disabling important developer notifications
+    # repopick 321339 -r -f # Allow disabling USB notifications
+    # repopick 368923 -r -f # Launcher3: Show clear all button in recents overview
 }
 
 apply_patches() {
