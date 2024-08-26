@@ -22,7 +22,7 @@ fi
 
 NOSYNC=false
 PERSONAL=false
-SIGNABLE=true
+SIGNABLE=false
 for var in "${@:2}"
 do
     if [ ${var} == "nosync" ]
@@ -35,11 +35,7 @@ do
         SIGNABLE=false
     fi
 done
-if [ ! -d "$HOME/.android-certs" ]; then
-    read -n1 -r -p $"\$HOME/.android-certs not found - CTRL-C to exit, or any other key to continue"
-    echo ""
-    SIGNABLE=false
-fi
+
 
 # Abort early on error
 set -eE
@@ -136,7 +132,7 @@ build_treble() {
         SIGNED=true
         echo ""
     fi
-    mv $OUT/system.img ~/build-output/lineage-21.0-$BUILD_DATE-UNOFFICIAL-${TARGET}$(${PERSONAL} && echo "-personal" || echo "")$(${SIGNED} && echo "-signed" || echo "").img
+    #mv $OUT/system.img ~/build-output/lineage-21.0-$BUILD_DATE-UNOFFICIAL-${TARGET}$(${PERSONAL} && echo "-personal" || echo "")$(${SIGNED} && echo "-signed" || echo "").img
     #make vndk-test-sepolicy
 }
 
