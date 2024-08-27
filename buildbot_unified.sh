@@ -114,7 +114,7 @@ build_treble() {
     esac
     lunch lineage_${TARGET}-${aosp_target_release}-userdebug
     make installclean
-    make -j$(lscpu -b -p=Core,Socket | grep -v '^#' | sort -u | wc -l) systemimage
+    make systemimage
     SIGNED=false
     if [ ${SIGNABLE} = true ] && [[ ${TARGET} == *_bg? ]]
     then
